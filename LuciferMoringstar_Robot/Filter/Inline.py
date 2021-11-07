@@ -93,7 +93,6 @@ def get_reply_markup(query):
         InlineKeyboardButton('💠 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 💠', url='t.me/joinchat/9Mq2rjj9YDk0YmZh')
         ],[  
         InlineKeyboardButton('♻️ 𝗦𝗲𝗮𝗿𝗰𝗵 𝗔𝗴𝗮𝗶𝗻 ♻️', switch_inline_query_current_chat=query),
-        InlineKeyboardButton('♻️ 𝗢𝘄𝗻𝗲𝗿 ♻️',url='t.me/BKC0001')
         ]]
     return InlineKeyboardMarkup(buttons)
 
