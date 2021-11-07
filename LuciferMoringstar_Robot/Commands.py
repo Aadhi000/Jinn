@@ -182,7 +182,7 @@ async def broadcast_handler_open(_, m):
 @Client.on_message(filters.private & filters.command("stats"))
 async def sts(c, m):
     await m.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}``",
+        text=f"**𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿𝘀 𝗜𝗻 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲 📂:** `{await db.total_users_count()}``",
         parse_mode="Markdown",
         quote=True
     )
@@ -242,7 +242,7 @@ async def unban(c, m):
 
     try:
         user_id = int(m.command[1])
-        unban_log_text = f"Unbanning user 🤪 {user_id}"
+        unban_log_text = f"𝗨𝗻𝗯𝗮𝗻𝗻𝗶𝗻𝗴.....🤪 {user_id}"
 
         try:
             await c.send_message(user_id, f"Your ban was lifted!")
@@ -295,7 +295,7 @@ async def total(bot, message):
     msg = await message.reply("𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴....🗳", quote=True)
     try:
         total = await Media.count_documents()
-        await msg.edit(f'🗄 Saved files: {total}')
+        await msg.edit(f'🗄 𝗦𝗮𝘃𝗲𝗱 𝗙𝗶𝗹𝗲𝘀: {total}')
     except Exception as e:
         logger.exception('Failed to check total files')
         await msg.edit(f'Error: {e}')
