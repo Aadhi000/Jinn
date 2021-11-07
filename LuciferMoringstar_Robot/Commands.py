@@ -49,10 +49,10 @@ async def start(bot, message):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("📢 𝗝𝗼𝗶𝗻 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢", url=invite_link.invite_link)
+                                InlineKeyboardButton("📢 Join Updates Channel 📢", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton("🔄 𝗧𝗿𝘆 𝗔𝗴𝗮𝗶𝗻", callback_data=f"checksub#{file_id}")
+                                InlineKeyboardButton("🔄 Try Again", callback_data=f"checksub#{file_id}")
                             ]
                         ]
                     ),
@@ -84,10 +84,10 @@ async def start(bot, message):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('♻️ 𝗝𝗼𝗶𝗻 𝗚𝗿𝗼𝘂𝗽 ♻️', url=f'{TUTORIAL}')
+                        InlineKeyboardButton("𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗚𝗿𝗼𝘂𝗽 ❤️", url="https://t.me/Latest_Movie_Media")
                     ],
                     [
-                        InlineKeyboardButton(' 💠𝗦𝗲𝗮𝗿𝗰𝗵 𝗔𝗴𝗮𝗶𝗻 💠', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('🔍 Search again 🔎', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
@@ -106,41 +106,34 @@ async def start(bot, message):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("📢 𝗝𝗼𝗶𝗻 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢", url=invite_link.invite_link)
+                        InlineKeyboardButton("📢 Join Updates Channel 📢", url=invite_link.invite_link)
                     ]
                 ]
             )
         )
     else:
-        await message.reply_text(
-            START_MSG.format(message.from_user.first_name),
-            parse_mode="Markdown",
-            disable_web_page_preview=True,
+        await message.reply_video(
+            video="https://telegra.ph/file/e9dda2769fad138590ee3.mp4",
+            caption=START_MSG,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton
-                            (
-                                "🔎 𝗦𝗲𝗮𝗿𝗰𝗵 𝗛𝗲𝗿𝗲", switch_inline_query_current_chat=''
-                            ),
-                        InlineKeyboardButton
-                            (
-                                "♻️ 𝗝𝗼𝗶𝗻 𝗚𝗿𝗼𝘂𝗽 ♻️", url="https://t.me/LatestMoviesHub001"
-                            )
-                    ],
+                        InlineKeyboardButton("➕️ Add Me To Your Chats ➕️", url="https://t.me/Imdbbott_bot?startgroup=botstart")
+                    ],  
                     [
-                        InlineKeyboardButton
-                            (
-                                "✨ 𝗛𝗲𝗹𝗽 ✨", callback_data="help"
-                            ),
-                        InlineKeyboardButton
-                            (
-                                "𝗔𝗯𝗼𝘂𝘁 🚩", callback_data="about"
-                            )
+                        InlineKeyboardButton("💞 𝗗𝗲𝘃 💞", url="https://t.me/Lucifer_DevilZ"),
+                        InlineKeyboardButton("𝗔𝗯𝗼𝘂𝘁 🚩", callback_data="about")
+                    ],  
+                    [
+                        InlineKeyboardButton("𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗚𝗿𝗼𝘂𝗽 ❤️", url="https://t.me/Latest_Movie_Media"),
+                        InlineKeyboardButton("𝗖𝗵𝗮𝗻𝗻𝗲𝗹 ❤", url="https://t.me/Latest_Movie_Mediaa")
+                    ],  
+                    [
+                        InlineKeyboardButton("Search Here♂️", switch_inline_query_current_chat='')
+                      ]
                     ]
-                ]
-            )
-        )
+                 )
+              )
         StopPropagation
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
@@ -186,8 +179,11 @@ async def broadcast_handler_open(_, m):
 
 @Client.on_message(filters.private & filters.command("stats"))
 async def sts(c, m):
+    if m.from_user.id not in ADMIN_ID:
+        await m.delete()
+        return
     await m.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}``",
+        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
         parse_mode="Markdown",
         quote=True
     )
@@ -297,10 +293,10 @@ async def _banned_usrs(c, m):
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
 async def total(bot, message):
     """Show total files in database"""
-    msg = await message.reply("𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴....🗳", quote=True)
+    msg = await message.reply("Processing...⏳", quote=True)
     try:
         total = await Media.count_documents()
-        await msg.edit(f'🗄 Saved files: {total}')
+        await msg.edit(f'📁 Saved files: {total}')
     except Exception as e:
         logger.exception('Failed to check total files')
         await msg.edit(f'Error: {e}')
@@ -320,7 +316,7 @@ async def delete(bot, message):
     """Delete file from database"""
     reply = message.reply_to_message
     if reply and reply.media:
-        msg = await message.reply("𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴....🗳", quote=True)
+        msg = await message.reply("Processing...⏳", quote=True)
     else:
         await message.reply('Reply to file with /delete which you want to delete', quote=True)
         return
@@ -346,10 +342,8 @@ async def delete(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton
-                (
-                     '♻️ 𝗚𝗥𝗢𝗨𝗣 ♻️', url=f'{TUTORIAL}'
-                )
+            InlineKeyboardButton('More Botz', url='https://t.me/MT_Botz')
+            InlineKeyboardButton('Video', url=f'{TUTORIAL}')
         ]
-    ]
-    await message.reply(text=f"{ABOUT}", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+        ]
+    await message.reply(text=f"{ABOUT}", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True
