@@ -84,10 +84,10 @@ async def start(bot, message):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton("♻️ 𝗝𝗼𝗶𝗻 𝗚𝗿𝗼𝘂𝗽 ♻️", url="https://t.me/LatestMoviesHub001")
+                        InlineKeyboardButton('♻️ 𝗝𝗼𝗶𝗻 𝗚𝗿𝗼𝘂𝗽 ♻️', url=f'{TUTORIAL}')
                     ],
                     [
-                        InlineKeyboardButton('💠 𝗦𝗲𝗮𝗿𝗰𝗵 𝗔𝗴𝗮𝗶𝗻 💠', switch_inline_query_current_chat='')
+                        InlineKeyboardButton(' 💠𝗦𝗲𝗮𝗿𝗰𝗵 𝗔𝗴𝗮𝗶𝗻 💠', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
@@ -112,9 +112,10 @@ async def start(bot, message):
             )
         )
     else:
-        await message.reply_video(
-            video="https://telegra.ph/file/cd564a08b3ab7b8bf3bc9.jpg",
-            caption=START_MSG,
+        await message.reply_text(
+            START_MSG.format(message.from_user.first_name),
+            parse_mode="Markdown",
+            disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -130,10 +131,11 @@ async def start(bot, message):
                     ],  
                     [
                         InlineKeyboardButton("💠 𝗦𝗲𝗮𝗿𝗰𝗵 𝗛𝗲𝗿𝗲 💠", switch_inline_query_current_chat='')
-                      ]
+                            
                     ]
-                 )
-              )
+                ]
+            )
+        )
         StopPropagation
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
@@ -179,11 +181,8 @@ async def broadcast_handler_open(_, m):
 
 @Client.on_message(filters.private & filters.command("stats"))
 async def sts(c, m):
-    if m.from_user.id not in ADMIN_ID:
-        await m.delete()
-        return
     await m.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
+        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}``",
         parse_mode="Markdown",
         quote=True
     )
@@ -296,7 +295,7 @@ async def total(bot, message):
     msg = await message.reply("𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴....🗳", quote=True)
     try:
         total = await Media.count_documents()
-        await msg.edit(f'📁 Saved files: {total}')
+        await msg.edit(f'🗄 Saved files: {total}')
     except Exception as e:
         logger.exception('Failed to check total files')
         await msg.edit(f'Error: {e}')
@@ -342,7 +341,10 @@ async def delete(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('♻️ 𝗚𝗥𝗢𝗨𝗣 ♻️', url='https://t.me/LatestMoviesHub001')
+            InlineKeyboardButton
+                (
+                     '♻️ 𝗚𝗥𝗢𝗨𝗣 ♻️', url=f'{TUTORIAL}'
+                )
         ]
-        ]
-    await message.reply(text=f"{ABOUT}", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True
+    ]
+    await message.reply(text=f"{ABOUT}", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
