@@ -286,7 +286,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
         elif query.data == "help":
             buttons = [[
-                InlineKeyboardButton('💠 𝗝𝗼𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 💠', url='t.me/LatestMoviesHub001'),
+                InlineKeyboardButton('💠 𝗝𝗼𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 💠', url='t.me/joinchat/9Mq2rjj9YDk0YmZh'),
                 InlineKeyboardButton('💞 𝗗𝗲𝘃 💞', url="https://t.me/BKC0001")
                 ],[
                 InlineKeyboardButton('💠 𝗝𝗼𝗶𝗻 𝗚𝗿𝗼𝘂𝗽 💠', url=f'{TUTORIAL}')
