@@ -133,10 +133,10 @@ async def group(client, message):
             LuciferMoringstar=await client.send_message(
             chat_id = message.chat.id,
             text=f"""
-𝗛𝗲𝘆..♥️🔥 <b>{message.from_user.mention}</b>
-<b>Movie Name-ൻ്റെ Spelling Correct ആണോ എന്ന് നോക്കണേ... അല്ലെങ്കിൽ എന്നോട് പറഞ്ഞാൽ മതി ›› @BKC0001</b>
+𝙷𝙴𝚈..<b>{message.from_user.mention}</b>
+<b>𝙲𝙷𝙴𝙲𝙺 𝚃𝙷𝙴 𝚂𝙿𝙴𝙻𝙻𝙸𝙽𝙶 𝙾𝙵 𝚈𝙾𝚄𝚁 𝚂𝙴𝙰𝚁𝙲𝙷𝙴𝙳 𝙼𝙾𝚅𝙸𝙴.</b>
 
-<b>Please Check The Spelling Of The Movie Name... Or Ask Me ›› @BKC0001</b>""",
+<b>𝙾𝚁 𝚃𝙷𝙴 𝙼𝙾𝚅𝙸𝙴 I𝚂 𝙽𝙾𝚃 𝚈𝙴𝚃 𝚁𝙴𝙻𝙴𝙰𝚂𝙴𝙳 𝙾𝚁 𝙰𝙳𝙳𝙴𝙳 𝚃𝙾 𝙳𝙰𝚃𝚂𝙱𝙰𝚂𝙴💌</b>""",
             parse_mode="html",
             reply_to_message_id=message.message_id
         )
